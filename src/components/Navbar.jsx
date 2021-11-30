@@ -2,20 +2,22 @@ import styled from 'styled-components'
 
 import logo from '../assets/shared/logo.svg'
 import burguer from '../assets/shared/icon-hamburger.svg'
+import NavbarSlider from './NavbarSlider'
+import { useState } from 'react'
 
 const NavbarMainContainer = styled.div`
   position: absolute;
   width: 100%;
   display: flex;
   justify-content: center;
-  align-items: center;
-  height: 2.5rem;
-  margin-top: 1.5rem;
-  `
+  height: 100%;
+  overflow: hidden;
+`
 
 const NavbarItemsContainer = styled.div`
   width: 89.59%;
-  height 100%;  
+  height 2.5rem;
+  margin-top: 1.5rem;
 `
 
 const LogoContainer = styled.div`
@@ -41,12 +43,20 @@ const BurguerImage = styled.div`
 `
 
 const Navbar = () => {
+  const [toogle, setToogle] = useState(false)
+
+  const HandleToogle = () => {
+    setToogle(!toogle)
+  }
+
+
   return (
     <NavbarMainContainer>
+      <NavbarSlider toogle={toogle} HandleToogle={HandleToogle} />
       <NavbarItemsContainer>
         <LogoContainer>
           <LogoImage />
-          <BurguerImage />
+          <BurguerImage onClick={HandleToogle}/>
         </LogoContainer>
       </NavbarItemsContainer>
     </NavbarMainContainer>
