@@ -11,10 +11,9 @@ const NavbarSliderMain = styled.div`
   opacity: 0.99;
   padding: 7.4rem 2rem;
   transition: transform 0.8s ease-in-out;
-  // transform: translateX(102%);
-  transform: ${({toogle}) => toogle ? 'translateX(0)' : 'translateX(102%)'};
-
+  transform: ${({ toogle }) => toogle ? 'translateX(0)' : 'translateX(102%)'};
   box-sizing: border-box;
+  z-index: 2;
   `
 
 const ItemCloseContainer = styled.div`
@@ -31,7 +30,7 @@ const ItemCloseImg = styled.img`
   height: 1.5rem;
 `
 
-  const ItemContainer = styled.div`
+const ItemContainer = styled.div`
   font-family: 'Barlow Condensed', sans-serif;
   font-size: 1.05rem;
   margin: 2rem 0;
@@ -46,28 +45,28 @@ const ItemText = styled.span`
   letter-spacing: 0.17rem;
 `
 
-const NavbarSlider = ({toogle, HandleToogle}) => {
+const NavbarSlider = ({ toogle, HandleToogle }) => {
   return (
     <NavbarSliderMain toogle={toogle}>
       <ItemCloseContainer>
-        <ItemCloseImg src={itemClose} onClick={HandleToogle}/>
+        <ItemCloseImg src={itemClose} onClick={HandleToogle} />
       </ItemCloseContainer>
       <ItemContainer>
         <ItemNumber>00</ItemNumber>
         <ItemText>HOME</ItemText>
-      </ItemContainer>          
+      </ItemContainer>
       <ItemContainer>
         <ItemNumber>01</ItemNumber>
         <ItemText>DESTINATION</ItemText>
-      </ItemContainer>          
+      </ItemContainer>
       <ItemContainer>
         <ItemNumber>02</ItemNumber>
         <ItemText>CREW</ItemText>
-      </ItemContainer>          
+      </ItemContainer>
       <ItemContainer>
         <ItemNumber>03</ItemNumber>
         <ItemText>TECHNOLOGY</ItemText>
-      </ItemContainer>          
+      </ItemContainer>
     </NavbarSliderMain>
   )
 }

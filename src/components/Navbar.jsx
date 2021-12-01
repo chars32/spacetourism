@@ -56,7 +56,7 @@ const Navbar = () => {
       <NavbarItemsContainer>
         <LogoContainer>
           <LogoImage />
-          <BurguerImage onClick={HandleToogle}/>
+          <BurguerImage onClick={HandleToogle} />
         </LogoContainer>
       </NavbarItemsContainer>
     </NavbarMainContainer>
