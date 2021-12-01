@@ -3,6 +3,8 @@ import styled from "styled-components"
 import destinationbg from '../assets/destination/background-destination-mobile.jpg'
 import moonimg from '../assets/destination/image-moon.png'
 
+import { destinations } from '../data.json'
+
 const DestinationMainContainer = styled.div`
   background-image: url(${destinationbg});
   background-size: cover;
@@ -112,7 +114,7 @@ const MetricNumbers = styled.p`
   text-align: center;
   padding-top: 0.75rem;
 `
-
+console.log(destinations)
 const Destination = () => {
   return (
     <DestinationMainContainer>
