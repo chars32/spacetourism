@@ -1,3 +1,4 @@
+import { useState } from "react"
 import styled from "styled-components"
 
 import destinationbg from '../assets/destination/background-destination-mobile.jpg'
@@ -114,10 +115,23 @@ const MetricNumbers = styled.p`
   text-align: center;
   padding-top: 0.75rem;
 `
-console.log(destinations)
+
 const Destination = () => {
+  const [infoPlanet, setInfoPlanet] = useState(destinations[0])
+
+  const SetPlanetInfo = (e) => {
+    // Get onclick planet name and capitalize it 
+    let namePlanet = e.target.innerHTML
+    let capitalizeNamePlanet = (namePlanet[0] + namePlanet.slice(1).toLowerCase())
+
+    // SetInfoPlanet data selected  
+    for (let dest in destinations) {
+      destinations[dest].name === capitalizeNamePlanet && setInfoPlanet(destinations[dest])
+    }
+  }
+
   return (
-    <DestinationMainContainer>
+    <DestinationMainContainer infoPlanet={infoPlanet}>
       <DestinationInfoContainer>
         <DestinationInfoTitle>
           <InfoTitleNumber>01</InfoTitleNumber>
@@ -125,14 +139,14 @@ const Destination = () => {
         </DestinationInfoTitle>
         <DestinationPlanet src={moonimg} />
         <PlanetMenuContainer>
-          <PlanetMenuItem onClick={() => console.log('moon')}>MOON</PlanetMenuItem>
-          <PlanetMenuItem>MARS</PlanetMenuItem>
-          <PlanetMenuItem>EUROPA</PlanetMenuItem>
-          <PlanetMenuItem>TITAN</PlanetMenuItem>
+          <PlanetMenuItem onClick={SetPlanetInfo}>MOON</PlanetMenuItem>
+          <PlanetMenuItem onClick={SetPlanetInfo}>MARS</PlanetMenuItem>
+          <PlanetMenuItem onClick={SetPlanetInfo}>EUROPA</PlanetMenuItem>
+          <PlanetMenuItem onClick={SetPlanetInfo}>TITAN</PlanetMenuItem>
         </PlanetMenuContainer>
         <PlanetDescriptionContainer>
-          <PlanetTitle>MOON</PlanetTitle>
-          <PlanetInfo>See our planet as you’ve never seen it before. A perfect relaxing trip away to help regain perspective and come back refreshed. While you’re there, take in some history by visiting the Luna 2 and Apollo 11 landing sites.</PlanetInfo>
+          <PlanetTitle>{infoPlanet.name.toUpperCase()}</PlanetTitle>
+          <PlanetInfo>{infoPlanet.description}</PlanetInfo>
         </PlanetDescriptionContainer>
         <DividerContainer />
         <PlanetMetrics>
@@ -141,12 +155,12 @@ const Destination = () => {
               AVG. DISTANCE
             </MetricTitle>
             <MetricNumbers>
-              384,400 KM
+              {infoPlanet.distance}
             </MetricNumbers>
           </PlanetDistance>
           <PlanetTravelTime>
             <MetricTitle>EST. TRAVEL TIME</MetricTitle>
-            <MetricNumbers>3 DAYS</MetricNumbers>
+            <MetricNumbers>{infoPlanet.travel}</MetricNumbers>
           </PlanetTravelTime>
         </PlanetMetrics>
       </DestinationInfoContainer>
