@@ -1,7 +1,8 @@
 import './App.css';
 
 // import Home from './pages/Home'
-import Destination from './pages/Destination';
+// import Destination from './pages/Destination'
+import Crew from './pages/Crew'
 
 import Navbar from './components/Navbar';
 
@@ -10,7 +11,8 @@ function App() {
     <div className="App">
       <Navbar />
       {/* <Home /> */}
-      <Destination />
+      {/* <Destination /> */}
+      <Crew />
     </div>
   );
 }
