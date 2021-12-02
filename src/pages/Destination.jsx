@@ -2,9 +2,19 @@ import { useState } from "react"
 import styled from "styled-components"
 
 import destinationbg from '../assets/destination/background-destination-mobile.jpg'
-import moonimg from '../assets/destination/image-moon.png'
+import Moon from '../assets/destination/image-moon.png'
+import Titan from '../assets/destination/image-titan.png'
+import Mars from '../assets/destination/image-mars.png'
+import Europa from '../assets/destination/image-europa.png'
 
 import { destinations } from '../data.json'
+
+const PlanetsList = {
+  Moon,
+  Mars,
+  Titan,
+  Europa
+}
 
 const DestinationMainContainer = styled.div`
   background-image: url(${destinationbg});
@@ -37,10 +47,11 @@ const InfoTitleNumber = styled.span`
 const InfoTitleText = styled.span`
   letter-spacing: 0.17rem;
 `
-const DestinationPlanet = styled.img`
+const DestinationPlanet = styled.div`
   width: 13rem;
   height: 13rem;
   margin-top: 2rem;
+  background-size: cover;
 `
 
 const PlanetMenuContainer = styled.div`
@@ -131,13 +142,13 @@ const Destination = () => {
   }
 
   return (
-    <DestinationMainContainer infoPlanet={infoPlanet}>
+    <DestinationMainContainer>
       <DestinationInfoContainer>
         <DestinationInfoTitle>
           <InfoTitleNumber>01</InfoTitleNumber>
           <InfoTitleText>PICK YOUR DESTINATION</InfoTitleText>
         </DestinationInfoTitle>
-        <DestinationPlanet src={moonimg} />
+        <DestinationPlanet infoPlanet={infoPlanet} style={{ backgroundImage:`url(${PlanetsList[infoPlanet.name]})`}}/>
         <PlanetMenuContainer>
           <PlanetMenuItem onClick={SetPlanetInfo}>MOON</PlanetMenuItem>
           <PlanetMenuItem onClick={SetPlanetInfo}>MARS</PlanetMenuItem>
