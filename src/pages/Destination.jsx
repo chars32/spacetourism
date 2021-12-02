@@ -65,7 +65,9 @@ const PlanetMenuContainer = styled.div`
 
 const PlanetMenuItem = styled.div`
   letter-spacing: 0.148rem;
-  // Bottom lines -- figureout how to implement it
+`
+
+const FirstPlanetMenuItem = styled(PlanetMenuItem)`
   border-bottom: 1px solid white;
   padding-bottom: 0.3rem;
 `
@@ -131,13 +133,20 @@ const Destination = () => {
   const [infoPlanet, setInfoPlanet] = useState(destinations[0])
 
   const SetPlanetInfo = (e) => {
-    // Get onclick planet name and capitalize it 
-    let namePlanet = e.target.innerHTML
-    let capitalizeNamePlanet = (namePlanet[0] + namePlanet.slice(1).toLowerCase())
+    // Get item planet selected and capitalize name
+    let getPlanet = e.target
+    let capitalizeNamePlanet = (getPlanet.innerHTML[0] + getPlanet.innerHTML.slice(1).toLowerCase())
 
-    // SetInfoPlanet data selected  
+    // SetInfoPlanet data of item selected  
     for (let dest in destinations) {
-      destinations[dest].name === capitalizeNamePlanet && setInfoPlanet(destinations[dest])
+      if (destinations[dest].name === capitalizeNamePlanet) {
+        setInfoPlanet(destinations[dest])
+        // Add border bottom to item selected
+        getPlanet.style.borderBottom = '1px solid white'
+      } else {
+        // Remove border bottom to no selected item
+        getPlanet.parentNode.childNodes[dest].style.borderBottom = 'None'
+      }
     }
   }
 
@@ -148,9 +157,9 @@ const Destination = () => {
           <InfoTitleNumber>01</InfoTitleNumber>
           <InfoTitleText>PICK YOUR DESTINATION</InfoTitleText>
         </DestinationInfoTitle>
-        <DestinationPlanet infoPlanet={infoPlanet} style={{ backgroundImage:`url(${PlanetsList[infoPlanet.name]})`}}/>
+        <DestinationPlanet infoPlanet={infoPlanet} style={{ backgroundImage: `url(${PlanetsList[infoPlanet.name]})` }} />
         <PlanetMenuContainer>
-          <PlanetMenuItem onClick={SetPlanetInfo}>MOON</PlanetMenuItem>
+          <FirstPlanetMenuItem onClick={SetPlanetInfo}>MOON</FirstPlanetMenuItem>
           <PlanetMenuItem onClick={SetPlanetInfo}>MARS</PlanetMenuItem>
           <PlanetMenuItem onClick={SetPlanetInfo}>EUROPA</PlanetMenuItem>
           <PlanetMenuItem onClick={SetPlanetInfo}>TITAN</PlanetMenuItem>
