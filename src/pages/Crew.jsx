@@ -1,16 +1,19 @@
+import { useState } from 'react'
 import styled from 'styled-components'
 
 import CrewBg from '../assets/crew/background-crew-mobile.jpg'
 import Ansari from '../assets/crew/image-anousheh-ansari.png'
 import Hurley from '../assets/crew/image-douglas-hurley.png'
-import Mark from '../assets/crew/image-mark-shuttleworth.png'
-import Victor from '../assets/crew/image-victor-glover.png'
+import Shuttleworth from '../assets/crew/image-mark-shuttleworth.png'
+import Glover from '../assets/crew/image-victor-glover.png'
+
+import { crew } from '../data.json'
 
 const CrewList = {
   Ansari,
   Hurley,
-  Mark,
-  Victor
+  Shuttleworth,
+  Glover
 }
 
 const CrewMainContainer = styled.div`
@@ -27,6 +30,7 @@ const CrewMainContainer = styled.div`
 const CrewContainer = styled.div`
 	width: 89.59%;
 	height: 73.4%;
+  z-index: 1;
 `
 const CrewTextContainer = styled.div`
 	width: 100%;
@@ -106,6 +110,22 @@ const CrewResume = styled.div`
 
 
 const Crew = () => {
+  const [crewInfo, setCrewInfo] = useState(crew[0])
+
+  const setInfoCrew = (e) => {
+    const selectedItem = e.target
+    const selectedItemValue = selectedItem.getAttribute('value')
+
+    for (let number in crew) {
+      if (crew[number].name === selectedItemValue) {
+        setCrewInfo(crew[number])
+        selectedItem.style.background = 'white'
+      } else {
+        selectedItem.parentNode.childNodes[number].style.background = '#979797'
+      }
+    }
+  }
+
   return (
     <CrewMainContainer>
       <CrewContainer>
@@ -113,23 +133,23 @@ const Crew = () => {
           <CrewNumber>02</CrewNumber>
           <CrewTitle>MEET YOUR CREW</CrewTitle>
         </CrewTextContainer>
-        <CrewImageContainer style={{ backgroundImage: `url(${CrewList.Hurley})` }} />
+        <CrewImageContainer style={{ backgroundImage: `url(${CrewList[crewInfo.name.split(" ")[1]]})` }} />
         <CrewIndicatorInfo>
           <CrewIndicators>
-            <BulletFirst />
-            <Bullet />
-            <Bullet />
-            <Bullet />
+            <BulletFirst onClick={setInfoCrew} value="Douglas Hurley" />
+            <Bullet onClick={setInfoCrew} value="Mark Shuttleworth" />
+            <Bullet onClick={setInfoCrew} value="Victor Glover" />
+            <Bullet onClick={setInfoCrew} value="Anousheh Ansari" />
           </CrewIndicators>
           <CrewInfo>
             <CrewPosition>
-              Commander
+              {crewInfo.role.toUpperCase()}
             </CrewPosition>
             <CrewName>
-              Douglas Hurley
+              {crewInfo.name.toUpperCase()}
             </CrewName>
             <CrewResume>
-              Douglas Gerald Hurley is an American engineer, former Marine Corps pilot and former NASA astronaut. He launched into space for the third time as commander of Crew Dragon Demo-2.
+              {crewInfo.bio}
             </CrewResume>
           </CrewInfo>
         </CrewIndicatorInfo>
