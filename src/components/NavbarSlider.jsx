@@ -45,25 +45,25 @@ const ItemText = styled.span`
   letter-spacing: 0.17rem;
 `
 
-const NavbarSlider = ({ toogle, HandleToogle }) => {
+const NavbarSlider = ({ toogle, HandleToogle, HandlePageSelected }) => {
   return (
     <NavbarSliderMain toogle={toogle}>
       <ItemCloseContainer>
         <ItemCloseImg src={itemClose} onClick={HandleToogle} />
       </ItemCloseContainer>
-      <ItemContainer>
+      <ItemContainer onClick={() => HandlePageSelected('Home')}>
         <ItemNumber>00</ItemNumber>
         <ItemText>HOME</ItemText>
       </ItemContainer>
-      <ItemContainer>
+      <ItemContainer onClick={() => HandlePageSelected('Destination')}>
         <ItemNumber>01</ItemNumber>
         <ItemText>DESTINATION</ItemText>
       </ItemContainer>
-      <ItemContainer>
+      <ItemContainer onClick={() => HandlePageSelected('Crew')}>
         <ItemNumber>02</ItemNumber>
         <ItemText>CREW</ItemText>
       </ItemContainer>
-      <ItemContainer>
+      <ItemContainer onClick={() => HandlePageSelected('Technology')}>
         <ItemNumber>03</ItemNumber>
         <ItemText>TECHNOLOGY</ItemText>
       </ItemContainer>

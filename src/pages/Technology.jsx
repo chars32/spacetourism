@@ -1,7 +1,7 @@
 import { useState } from "react"
 import styled from "styled-components"
 
-import {technology} from '../data.json'
+import { technology } from '../data.json'
 
 import TechologyBG from '../assets/technology/background-technology-mobile.jpg'
 import LaunchVehicle from '../assets/technology/image-launch-vehicle-landscape.jpg'
@@ -104,8 +104,8 @@ const TechnologyResume = styled.div`
   font-family: 'Barlow', sans-serif;
   color: #D0D6F9;
   margin-top: 1.2rem;
-  font-size: 0.9rem;
-  line-height: 1.3rem;
+  font-size: 1rem;
+  line-height: 1.5rem;
 `
 
 const Technology = () => {
@@ -126,7 +126,6 @@ const Technology = () => {
       }
     }
   }
-  console.log(technologyInfo)
 
   return (
     <TechnolgyMainContainer>
@@ -135,7 +134,7 @@ const Technology = () => {
           <TechnologyNumber>03</TechnologyNumber>
           <TechnologyTitle> SPACE LAUNCH 101</TechnologyTitle>
         </TechnologyTextContainer>
-        <TechnologyImageContainer style={{ backgroundImage: `url(${TechVehicles[technologyInfo.name]}` }}/>
+        <TechnologyImageContainer style={{ backgroundImage: `url(${TechVehicles[technologyInfo.name]}` }} />
         <TechnologyIndicatorInfo>
           <TechnologyIndicators>
             <BulletFirst onClick={setInfoTechnology} value='Launch vehicle'>1</BulletFirst>

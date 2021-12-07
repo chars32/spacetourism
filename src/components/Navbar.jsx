@@ -42,17 +42,16 @@ const BurguerImage = styled.div`
   background-size: cover;
 `
 
-const Navbar = () => {
+const Navbar = ({ HandlePageSelected }) => {
   const [toogle, setToogle] = useState(false)
 
   const HandleToogle = () => {
     setToogle(!toogle)
   }
 
-
   return (
     <NavbarMainContainer>
-      <NavbarSlider toogle={toogle} HandleToogle={HandleToogle} />
+      <NavbarSlider toogle={toogle} HandleToogle={HandleToogle} HandlePageSelected={HandlePageSelected} />
       <NavbarItemsContainer>
         <LogoContainer>
           <LogoImage />
