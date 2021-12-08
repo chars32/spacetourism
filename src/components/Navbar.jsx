@@ -40,6 +40,9 @@ const BurguerImage = styled.div`
   height: 1.3rem;
   background-image: url(${burguer});
   background-size: cover;
+  @media(min-width: 768px) {
+    display: none;
+  }
 `
 
 const Navbar = ({ HandlePageSelected }) => {
